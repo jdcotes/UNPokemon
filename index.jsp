@@ -3,7 +3,7 @@
 <TITLE>Hola Mundo!</TITLE>
 </HEAD>
 <BODY>
-<%@ page import="java.sql.*" %>
+<%@ page import="/usr/share/java/mysql.jar.*" %>
 <%
 
         try {
@@ -28,7 +28,6 @@
             
             conexion.close();
 	        }
-	
 
 	catch(ClassNotFoundException e){ out.println(e); }
 	catch(SQLException e){ out.println(e); }
