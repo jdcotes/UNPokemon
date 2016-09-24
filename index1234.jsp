@@ -16,7 +16,7 @@
     </style>
   <title>Prueba Pokemon GO</title>
 
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js">
     var intervalo;
     var map;
     var entro = 0;
