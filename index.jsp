@@ -3,7 +3,7 @@
 <TITLE>Hola Mundo!</TITLE>
 </HEAD>
 <BODY>
-<%@ page import="/usr/share/java/mysql.jar.*" %>
+<%@ page import="java.sql.*" %>
 <%
 
         try {

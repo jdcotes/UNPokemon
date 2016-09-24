@@ -4,12 +4,17 @@
 </HEAD>
 <BODY>
 <%
-for ( int i = 0 ; i < 10 ; i ++ )
+/*or ( int i = 0 ; i < 10 ; i ++ )*/
 {
 %>
 Hola Mundo! Este es el saludo número <%=i%>.
 <br>
 <%
+Random r = new Random();
+Double Low = -74.851759;
+Double High = -74.849201;
+Double Result = Math.random()*(High-Low) + Low;
+out.println(Result);
 }
 %>
 </BODY>
