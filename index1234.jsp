@@ -101,7 +101,9 @@
       lowlat = 11.017249;
       highlat = 11.020972;
       resultlat = Math.random()*(highlat-lowlat) + lowlat;
-      $.post("vivoh.php",{latb: resultlat,lngb: resultlng,idb: id});
+      $.post("vivoh.php",{latb: resultlat,lngb: resultlng,idb: id}function(){var prueba1 = JSON.parse(respuesta);
+    tamaño = prueba1.length
+    console.log(tamaño)});
       //ESCRIBIR EN BASE ID POKEMON  LATITUD Y LONGITUD  
     }
 
