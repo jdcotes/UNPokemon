@@ -16,7 +16,7 @@
     </style>
   <title>Prueba Pokemon GO</title>
 
-  <script type="text/javascript">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js">
     var intervalo;
     var map;
     var entro = 0;
@@ -104,6 +104,7 @@
       $.post("vivoh.php",{latb: resultlat, lngb: resultlng, idb: id},function(){});
       //ESCRIBIR EN BASE ID POKEMON  LATITUD Y LONGITUD  
     }
+
     function drawpokemonmarker(){
 
       random();
@@ -117,14 +118,10 @@
         map: map2,
         icon: image   
       });
-      intervalo3 = setInterval('erasemarker()',10000);
       console.log("estoy entrando");
       }
 
-      function erasemarker(){
-        marker1.setMap(null);
-      }
-    </script>
+     </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsFelqvBHeiBZ9KEmCJ31cVXQjdo0aASk"  async defer></script>
 </head>
 <body>
