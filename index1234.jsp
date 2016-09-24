@@ -16,7 +16,7 @@
     </style>
   <title>Prueba Pokemon GO</title>
 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js">
+  <script type="text/javascript" >
     var intervalo;
     var map;
     var entro = 0;
@@ -122,6 +122,7 @@
       }
 
      </script>
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsFelqvBHeiBZ9KEmCJ31cVXQjdo0aASk"  async defer></script>
 </head>
 <body>
