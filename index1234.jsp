@@ -93,7 +93,6 @@
     function random(){
       var maxid = 11;
       var minid = 1;
-      var flag = 0;
       id = Math.random()*(maxid-minid)+minid;
       //LAMAR BASE DE DATOS NOMBRE IMAGEN A DIBUJAR 
       lowlng = -74.851759;
@@ -102,7 +101,7 @@
       lowlat = 11.017249;
       highlat = 11.020972;
       resultlat = Math.random()*(highlat-lowlat) + lowlat;
-      $.post("vivoh.php",{latb: resultlat, lngb: resultlng, idb: id,flagb: flag},function(){});
+      $.post("vivoh.php",{latb: resultlat, lngb: resultlng, idb: id},function(){});
       //ESCRIBIR EN BASE ID POKEMON  LATITUD Y LONGITUD  
     }
     function drawpokemonmarker(){
