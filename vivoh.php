@@ -10,15 +10,9 @@
   $sql = "INSERT INTO Pokemap(IDPok, Level, Attack 1, Attack 2, Latitud, Longitud) VALUES('$_POST[idb]', 50, 0, 0, '$_POST[latb]', '$_POST[lngb]',0) ";
   $ejecutar_sql1=mysql_query($sql) or die("Problemas en consulta: ".mysql_error());
   
-  $tabla=array();
-  $i=0;
+ 
 
-    while($reg=mysql_fetch_array($ejecutar_sql1)){  
-      $tabla[$i]=$reg;
-      $i++;
-    }
-
-  echo json_encode($tabla);
+ 
   mysql_free_result($ejecutar_sql1);
   mysql_close($con);
 
