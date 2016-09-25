@@ -31,7 +31,7 @@
             String juga="jugador"+n;
             
             
-            instruccion.executeUpdate( "CREATE TABLE unpokemon."+juga+" (\n" +
+            String createjuga= "CREATE TABLE unpokemon."+juga+" (\n" +
                     "  `Caughts` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `IDpkcaught` INT NOT NULL,\n" +
                     "  `Attack1` VARCHAR(45) NOT NULL,\n" +
@@ -43,8 +43,9 @@
                     "    FOREIGN KEY (`IDpkcaught`)\n" +
                     "    REFERENCES `unpokemon`.`pokedex` (`IDPokemon`)\n" +
                     "    ON DELETE NO ACTION\n" +
-                    "    ON UPDATE NO ACTION);" );
-
+                    "    ON UPDATE NO ACTION)";
+            PreparedStatement preparedStmt2 = conexion.prepareStatement(createjuga);
+            preparedStmt2.execute();
             
             String redirectURL = "index.html";
             response.sendRedirect(redirectURL);
