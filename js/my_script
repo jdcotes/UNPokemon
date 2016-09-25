@@ -1,0 +1,8 @@
+$(document).ready( function(){
+	
+$.getJSON("fetch.php", function(data){
+		$("ul").empty		
+
+});
+
+});
