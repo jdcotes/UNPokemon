@@ -29,7 +29,7 @@
             response.sendRedirect(redirectURL);
             }
             else{
-            String redirectURL = "login.html";
+            String redirectURL = "index.html";
             response.sendRedirect(redirectURL);
             }
 

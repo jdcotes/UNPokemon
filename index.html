@@ -1,96 +1,127 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1.0">
-    <style>
-      html,body {
-        height: 100%;
-        margin: 0 auto;
-        padding: 0;
-      } 
-      #map {
-        height: 600px;
-        width: 800px;
-      }
-    </style>
-  <title>Prueba Pokemon GO</title>
-  <script type="text/javascript">
-    var intervalo;
-    var map;
-    var entro = 0;
-    var myLatLng;
-    var marker;
-    var latold = 0;
-    var lngold = 0;
-    var map2;
-    var a = 0;
-    var lat,lng;
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    intevalo1 = setInterval('CurrentPosition()',5000);
+    <title>UNPokemon | </title>
+    <!--HOLIIII-->
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="vendors/animate.css/animate.min.css" rel="stylesheet">
 
-    function CurrentPosition(){
-      navigator.geolocation.getCurrentPosition(onSuccessGeolocating, onErrorGeolocating,{enableHighAccuracy: true,maximumAge:5000,timeout:10000});
-    }
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.min.css" rel="stylesheet">
+  </head>
 
-    function onSuccessGeolocating(position){
-      lat = position.coords.latitude;
-      lng = position.coords.longitude;
-      
-      if ((Math.abs(lat-latold)>0.001) || (Math.abs(lng-lngold)>0.001)){
-        myLatLng = new google.maps.LatLng(lat,lng);
-      }
+  <body class="login" >
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
 
-      if (entro == 0){
-       initMap();
-      }
-      
-      if (entro==0){
-       marker = new google.maps.Marker({
-       position: myLatLng,
-       map: map2,             //Idea colocar nombre ususario.
-       });
-        entro = 1;
-      }
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form action="Check.jsp" method = "post">
+              <h1>Ingresa</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required="" id="usename" name="username" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required="" id="password" name="password"/>
+              </div>
+              <div>
+                <a><button class="btn btn-default" type = "submit" >Log in</button> </a>
+                <a class="reset_pass" href="#">¿Olvidó su contraseña?</a>
+              </div>
 
-     drawmarker();
-    }
+              <div class="clearfix"></div>
 
-    function onErrorGeolocating(position){
-      alert("No se adquirieron datos");
-    }
+              <div class="separator">
+                <p class="change_link">Regístrese
+                  <a href="#signup" class="to_register"> Crear cuenta</a>
+                </p>
 
+                <div class="clearfix"></div>
+                <br />
 
-    function initMap() {
-      map2 = new google.maps.Map(document.getElementById('map'), {
-       zoom: 17,
-       center: myLatLng
-      });
-    }
+                <div>
+                  <h1><i class="fa fa-gamepad"></i> UNPokemon</h1>
+                  <p>©2016 All Rights Reserved. CCS </p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
 
-    function drawmarker(){
-      
-      marker.setMap(null);
-      var image = 'Marcadores/Pokemarker.png';
-      marker = new google.maps.Marker({
-       position: myLatLng,
-       map: map2,
-       icon: image   //Idea colocar nombre ususario.
-      });
-    }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsFelqvBHeiBZ9KEmCJ31cVXQjdo0aASk"  async defer></script>
-</head>
-<body>
-<center>
-<font face="helvetica">
- 
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form method="post" action="registDB.jsp">
+              <h1>Crear Cuenta</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required="" name="username" />
+              </div>
 
-<br>
-<br>
-<td > <center id='map'></center> </td>
-</font>
-</center>
+                    <p class="text-muted">Team: </p>
+                    <div class="row">
+                      <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-round btn-danger">
+                          <input type="radio"  name="team" id="option1" value="Rojo"> Rojo
+                        </label>
+                        <label class="btn btn-round btn-primary">
+                          <input type="radio"  name="team" id="option2" value="Azul"> Azul
+                        </label>
+                        <label class="btn btn-round btn-warning">
+                          <input type="radio"  name="team" id="option3" value="Amarillo"> Amarillo
+                        </label>
+                      </div>
+                <br>
+                <br>
+                <br>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required=""  name="password"/>
+              </div>
+              <div>
+                <a><button class="btn btn-default" type = "submit" > Registrar </button> </a>
+              </div>
 
-</body>
-</html> 
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Para usuarios registrados
+                  <a href="#signin" class="to_register"> Ingresar </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-gamepad"></i> UNPokemon</h1>
+                  <p>©2016 All Rights Reserved. CCS</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.min.js"></script>
+
+  </body>
+</html>

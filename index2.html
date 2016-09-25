@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0">
+    <style>
+      html,body {
+        height: 100%;
+        margin: 0 auto;
+        padding: 0;
+      } 
+      #map {
+        height: 600px;
+        width: 800px;
+      }
+    </style>
+  <title>Prueba Pokemon GO</title>
+  <script type="text/javascript">
+    var intervalo;
+    var map;
+    var entro = 0;
+    var myLatLng;
+    var marker;
+    var latold = 0;
+    var lngold = 0;
+    var map2;
+    var a = 0;
+    var lat,lng;
+
+    intevalo1 = setInterval('CurrentPosition()',5000);
+
+    function CurrentPosition(){
+      navigator.geolocation.getCurrentPosition(onSuccessGeolocating, onErrorGeolocating,{enableHighAccuracy: true,maximumAge:5000,timeout:10000});
+    }
+
+    function onSuccessGeolocating(position){
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      
+      if ((Math.abs(lat-latold)>0.001) || (Math.abs(lng-lngold)>0.001)){
+        myLatLng = new google.maps.LatLng(lat,lng);
+      }
+
+      if (entro == 0){
+       initMap();
+      }
+      
+      if (entro==0){
+       marker = new google.maps.Marker({
+       position: myLatLng,
+       map: map2,             //Idea colocar nombre ususario.
+       });
+        entro = 1;
+      }
+
+     drawmarker();
+    }
+
+    function onErrorGeolocating(position){
+      alert("No se adquirieron datos");
+    }
+
+
+    function initMap() {
+      map2 = new google.maps.Map(document.getElementById('map'), {
+       zoom: 17,
+       center: myLatLng
+      });
+    }
+
+    function drawmarker(){
+      
+      marker.setMap(null);
+      var image = 'Marcadores/Pokemarker.png';
+      marker = new google.maps.Marker({
+       position: myLatLng,
+       map: map2,
+       icon: image   //Idea colocar nombre ususario.
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsFelqvBHeiBZ9KEmCJ31cVXQjdo0aASk"  async defer></script>
+</head>
+<body>
+<center>
+<font face="helvetica">
+ 
+
+<br>
+<br>
+<td > <center id='map'></center> </td>
+</font>
+</center>
+
+</body>
+</html> 
