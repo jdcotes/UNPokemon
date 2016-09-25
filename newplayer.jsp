@@ -28,7 +28,7 @@
                     "  INDEX `idpk_idx` (`IDpkcaught` ASC),\n" +
                     "  CONSTRAINT `idpk`\n" +
                     "    FOREIGN KEY (`IDpkcaught`)\n" +
-                    "    REFERENCES `unpokemon`.`pokedex` (`IDPokemon`)\n" +
+                    "    REFERENCES `unpokemon`.`Pokedex` (`IDPokemon`)\n" +
                     "    ON DELETE NO ACTION\n" +
                     "    ON UPDATE NO ACTION)";
             PreparedStatement preparedStmt2 = conexion.prepareStatement(createjuga);
