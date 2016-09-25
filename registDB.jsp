@@ -30,11 +30,29 @@
             String juga="jugador"+n;
             session.setAttribute("thejuga",juga);
             
-            
+            String constraintn="idpk"+n;
 
             
-            String redirectURL = "newplayer.jsp";
+            String createjuga= "CREATE TABLE unpokemon."+juga+" (\n" +
+                    "  `Caughts` INT NOT NULL AUTO_INCREMENT,\n" +
+                    "  `IDpkcaught` INT NOT NULL,\n" +
+                    "  `Attack1` VARCHAR(45) NOT NULL,\n" +
+                    "  `Attack2` VARCHAR(45) NOT NULL,\n" +
+                    "  `level` VARCHAR(45) NOT NULL,\n" +
+                    "  PRIMARY KEY (`Caughts`),\n" +
+                    "  INDEX `idpk_idx` (`IDpkcaught` ASC),\n" +
+                    "  CONSTRAINT `"+constraintn+"`\n" +
+                    "    FOREIGN KEY (`IDpkcaught`)\n" +
+                    "    REFERENCES `unpokemon`.`Pokedex` (`IDPokemon`)\n" +
+                    "    ON DELETE NO ACTION\n" +
+                    "    ON UPDATE NO ACTION)";
+            PreparedStatement preparedStmt2 = conexion.prepareStatement(createjuga);
+            preparedStmt2.execute();
+
+            
+            String redirectURL = "index.html";
             response.sendRedirect(redirectURL);
+
 
 
 
