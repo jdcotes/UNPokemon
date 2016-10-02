@@ -26,20 +26,34 @@
 					<!-- Inner -->
 						<div class="inner">
 							<header>
-								<h1><a href="index.html" id="logo">Ingresa</a></h1>
+								<h1><a href="index.html" id="logo">Crear Cuenta</a></h1>
 								<hr />
-								<p>Hola, si ya tienes cuenta ingresa por favor: </p>
+								<p>Ingresa tus datos por favor: </p>
 							</header>
-							<form method="post" action="Check.jsp">
+							<form method="post" action="registDB.jsp">
 							  <div>
 				                <input type="text" placeholder="Username" required="" id="usename" name="username" />
 				              </div>
+				              <br>
+				              <center>
+			                    <p > Team: </p>
+			                      <div>
+			                          <input type="radio"  name="team" id="option1" value="Rojo" style="background: red; color: white;width:20px;height:20px "><Font Face="Tahoma" size="3">Rojo</Font>
+			                        
+			                        
+			                          <input type="radio"  name="team" id="option2" value="Azul" style="background: blue; color: white;width:20px;height:20px "><Font Face="Tahoma" size="3">Azul</Font>
+			                        
+			                       
+			                          <input type="radio"  name="team" id="option3" value="Amarillo" style="background:yellow; color: white;width:20px;height:20px "><Font Face="Tahoma" size="3">Amarillos</Font>
+			                        
+				              </div>
+				              </center>
 				              <br>
 				              <div>
 				                <input type="password" placeholder="Password" required="" id="password" name="password"/>
 				              </div>
 							<footer>
-								<button type="submit" style="background: lightgrey; color: black"><Font Face="Tahoma" size="3">Log in</Font></button>
+								<button type="submit" style="background: lightgrey; color: black"><Font Face="Tahoma" size="3">Sign Up</Font></button>
 								<br>
 								
 							</footer>
@@ -57,17 +71,6 @@
 						</nav>
 
 				</div>
-
-			<!-- Banner -->
-				<section id="banner">
-					<header>
-						<h2>Hola, bienvenido a <strong>UNPokemon</strong></h2>
-						<p>
-							Si no estas registrado te invitamos a crear tu cuenta <a href="regist.html">aquí</a>.
-						</p>
-					</header>
-				</section>
-
 		
 			<!-- Footer -->
 				<div id="footer">
