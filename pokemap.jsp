@@ -20,6 +20,7 @@
   <%@ page import="java.sql.*" %>
   <%@ page import= "java.util.*"%>
   <%
+  
     int maxid = 11;
     int minid = 1;
     int id = 3;
