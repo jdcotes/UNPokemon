@@ -28,11 +28,11 @@
     int counter = 0;
     int counter2 = 0;
     String prueba = "";
-    double lowlng = -74.851759;
-    double highlng = -74.849201;
+    double lowlng = -74.829752;
+    double highlng = -74.832010;
     double resultlng = 0;
-    double lowlat = 11.017249;
-    double highlat = 11.020972;
+    double lowlat = 11.000776;
+    double highlat = 11.003017 ;
     double resultlat = 0;
     String[] pokeicon =new String[5];
     double[] arraylat = new double[5];
@@ -136,6 +136,7 @@
     var myLatLng;
     var intervalo1;
     var distance = [];
+
 
     CurrentPosition();
  
@@ -360,28 +361,28 @@
       if (min<=0.0002){
         console.log("Atrapame");
         if (distance[0]=min){
-          document.cookie="lat=<%= lat1%>;";
-         document.cookie="long=<%= lng1%>;";
+          document.cookie="lat="+lat1+";";
+         document.cookie="long="+lng1+";";
          window.location.assign("middle.jsp")
         }
         if (distance[1]=min){
-          document.cookie="lat=<%= lat2%>;";
-         document.cookie="long=<%= lng2%>;";
+          document.cookie="lat="+lat2+";";
+         document.cookie="long="+lng2+";";
          window.location.assign("middle.jsp")
         }
         if (distance[2]=min){
-          document.cookie="lat=<%= lat3%>;";
-         document.cookie="long=<%= lng3%>;";
+          document.cookie="lat="+lat3+";";
+         document.cookie="long="+lng3+";";
          window.location.assign("middle.jsp")
         }
         if (distance[3]=min){
-          document.cookie="lat=<%= lat4%>;";
-         document.cookie="long=<%= lng4%>;";
+          document.cookie="lat="+lat4+";";
+         document.cookie="long="+lng4+";";
          window.location.assign("middle.jsp")
         }
         if (distance[4]=min){
-          document.cookie="lat=<%= lat5%>;";
-         document.cookie="long=<%= lng5%>;";
+          document.cookie="lat="+lat5+";";
+         document.cookie="long="+lng5+";";
          window.location.assign("middle.jsp")
         }
       }
