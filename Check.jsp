@@ -12,7 +12,7 @@
             String pass="";
 			Class.forName("com.mysql.jdbc.Driver");
             //Crear el objeto de conexion a la base de datos
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","1234");
             //Crear objeto Statement para realizar queries a la base de datos
             Statement instruccion = conexion.createStatement();
             //Un objeto ResultSet, almacena los datos de resultados de una consulta

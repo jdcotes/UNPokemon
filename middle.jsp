@@ -37,7 +37,7 @@
             String name="";
             Class.forName("com.mysql.jdbc.Driver");
 
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","1234");
 
             Statement instruccion = conexion.createStatement();
 
