@@ -12,7 +12,17 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/mainn.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	<style>
+		#map{
+			display: none;
+		}    
+        #map1 {
+          height: 400px;
+          width: 100%;
+        }
+    </style>
 	</head>
+
 	<body class="no-sidebar">
 	<%
 	String pokename= (String) session.getAttribute("Pokename");
@@ -54,20 +64,14 @@
 					<div class="container">
 						<article id="main" class="special">
 							<header>
-								<h2><a href="#"><%= pokename%></a></h2>
-								<p>
-									lvl: <%= pokelevel%> tipo: <%= poketype%> 
-								</p>
+								<h2>Mapa</h2>
 							</header>
 							<center>
-							<img src="<%= image%>" style="width:30%;height:30%">
+							    <div id="map1"></div>
+   								<div id="map"></div>
 							</center>
 						</article>
-						<hr />
 					</div>
-					<center>
-					<a href="registpoke.jsp" class="button">Atrapar</a>
-					</center>
 				</div>
 
 			<!-- Footer -->
@@ -113,6 +117,24 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+			 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+		    <script async defer
+		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsFelqvBHeiBZ9KEmCJ31cVXQjdo0aASk&callback=initMap">
+		    </script>
+		    <script type="text/javascript">
+		      var map2;
+
+		      function initMap() {
+		        map2 = new google.maps.Map(document.getElementById('map1'), {
+		          center: {lat: 11.019195, lng: -74.850409},
+		          zoom: 17
+		        });
+		      }
+		      var auto_refresh = setInterval(function (){$('#map').load('pokemap.jsp').fadeIn("slow");}, 300000);
+		      {$('#map').load('pokemap.jsp').fadeIn("slow");}
+
+		    </script>
+		    <input type= text value = "0"  id="control" style="display: none" />
 
 	</body>
 </html>

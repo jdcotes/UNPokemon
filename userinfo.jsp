@@ -48,6 +48,7 @@
 								<li><a href="regist.html">Registrarse</a></li>
 								<li><a href="about.html">Sobre..</a></li>
 								<li><a href="userinfo.html">Pokemons</a></li>
+								<li><a href="main.jsp">Mapa</a></li>
 							</ul>
 						</nav>
 

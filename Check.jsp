@@ -25,7 +25,7 @@
             pass=tabla.getString("Password");}
             
             if(pass.equals(passw)){
-            String redirectURL = "provee.jsp";
+            String redirectURL = "main.jsp";
             response.sendRedirect(redirectURL);
             }
             else{
