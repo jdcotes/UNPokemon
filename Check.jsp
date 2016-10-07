@@ -20,8 +20,6 @@
             Statement instruccion = conexion.createStatement();
             //Un objeto ResultSet, almacena los datos de resultados de una consulta
 
-            ResultSet tabla = instruccion.executeQuery("SELECT * FROM unpokemon.jugadores where Username='"+name+"'" );
-
             ResultSet pokeplayer = instruccion.executeQuery("SELECT * FROM unpokemon.jugadores where Username='"+name+"'"  );
 
             while(pokeplayer.next()){
@@ -44,6 +42,8 @@
             session.setAttribute("thehead",head);
             session.setAttribute("theidplayer",idplayer);
 
+            ResultSet tabla = instruccion.executeQuery("SELECT * FROM unpokemon.jugadores where Username='"+name+"'" );
+            
             while(tabla.next()){
             user=tabla.getString("Username");
             pass=tabla.getString("Password");}
