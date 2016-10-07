@@ -360,19 +360,29 @@
       if (min<=0.0002){
         console.log("Atrapame");
         if (distance[0]=min){
-        
+          document.cookie="lat=<%= lat1%>;";
+         document.cookie="long=<%= lng1%>;";
+         window.location.assign("middle.jsp")
         }
         if (distance[1]=min){
-
+          document.cookie="lat=<%= lat2%>;";
+         document.cookie="long=<%= lng2%>;";
+         window.location.assign("middle.jsp")
         }
         if (distance[2]=min){
-
+          document.cookie="lat=<%= lat3%>;";
+         document.cookie="long=<%= lng3%>;";
+         window.location.assign("middle.jsp")
         }
         if (distance[3]=min){
-
+          document.cookie="lat=<%= lat4%>;";
+         document.cookie="long=<%= lng4%>;";
+         window.location.assign("middle.jsp")
         }
         if (distance[4]=min){
-
+          document.cookie="lat=<%= lat5%>;";
+         document.cookie="long=<%= lng5%>;";
+         window.location.assign("middle.jsp")
         }
       }
     }
