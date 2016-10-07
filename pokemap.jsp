@@ -28,11 +28,11 @@
     int counter = 0;
     int counter2 = 0;
     String prueba = "";
-    double lowlng = -74.829752;
-    double highlng = -74.832010;
+    double lowlng = -74.849201;
+    double highlng = -74.851759;
     double resultlng = 0;
-    double lowlat = 11.000776;
-    double highlat = 11.003017 ;
+    double lowlat = 11.017249;
+    double highlat = 11.020972 ;
     double resultlat = 0;
     String[] pokeicon =new String[5];
     double[] arraylat = new double[5];
