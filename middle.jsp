@@ -35,6 +35,11 @@
             String level="";
             String tipo="";
             String name="";
+            String team="";
+            String head="";
+            int idplayer=0;
+            String playername= (String) session.getAttribute("thename");
+
             Class.forName("com.mysql.jdbc.Driver");
 
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","1234");
@@ -53,19 +58,41 @@
             name=pokedex.getString("Pokemon");
             tipo=pokedex.getString("Type");}
 
+
+            ResultSet pokeplayer = instruccion.executeQuery("SELECT * FROM unpokemon.jugadores where Username='"+playername+"'"  );
+
+            while(pokeplayer.next()){
+            team=pokeplayer.getString("Team");
+            idplayer=pokeplayer.getInt("IDPlayer");
+            }
+
+            if(team.equals("Rojo"))
+            {
+               head="headerr";
+            }else{
+               if(team.equals("Azul"))
+               {
+                  head="headera";
+               }else{
+                  head="headerm";
+               }
+            }
+
+
             session.setAttribute("idpoke",idpok);
             session.setAttribute("Pokename",name);
             session.setAttribute("Tipo",tipo);
             session.setAttribute("theLevel",level);
             session.setAttribute("theLati",lati);
             session.setAttribute("theLongi",longi);
-            
+            session.setAttribute("thehead",head);
+            session.setAttribute("theidplayer",idplayer);
 
             String redirectURL = "catch.jsp";
             response.sendRedirect(redirectURL);
             
 
-
+            out.println(idplayer);
             conexion.close();
 
 

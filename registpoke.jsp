@@ -11,6 +11,7 @@
             String name= (String) session.getAttribute("Pokename");
             String lati= (String) session.getAttribute("theLati");
             String longi= (String) session.getAttribute("theLongi");
+            int idplayer= (int) session.getAttribute("theidplayer");
             String[] a= new String[2];
             int i=0;
 
@@ -20,7 +21,7 @@
             out.println(name);
             out.println(lati);
             out.println(longi);
-
+            out.println(idplayer);
             Class.forName("com.mysql.jdbc.Driver");
             
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","1234");
@@ -35,7 +36,10 @@
                   i=i+1;
                }
             }
-            String pokecaught = "INSERT INTO unpokemon.jugador2 \n" +
+
+            String juga="jugador"+idplayer;
+
+            String pokecaught = "INSERT INTO unpokemon."+juga+" \n" +
                               "(`Caughts`,\n" +
                               "`IDpkcaught`,\n" +
                               "`Attack1`,\n" +
@@ -55,8 +59,8 @@
             preparedStmt2.execute();
 
 
-            String redirectURL = "main.html";
-            response.sendRedirect(redirectURL);
+            //String redirectURL = "main.html";
+            //response.sendRedirect(redirectURL);
             
 
 

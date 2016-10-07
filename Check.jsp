@@ -10,7 +10,7 @@
             session.setAttribute( "thepass", passw );
             String user="";
             String pass="";
-			Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.jdbc.Driver");
             //Crear el objeto de conexion a la base de datos
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","1234");
             //Crear objeto Statement para realizar queries a la base de datos
@@ -25,7 +25,7 @@
             pass=tabla.getString("Password");}
             
             if(pass.equals(passw)){
-            String redirectURL = "main.html";
+            String redirectURL = "provee.jsp";
             response.sendRedirect(redirectURL);
             }
             else{

@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/mainn.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body class="no-sidebar">
@@ -19,18 +19,18 @@
 	String poketype= (String) session.getAttribute("Tipo");
 	String pokelevel= (String) session.getAttribute("theLevel");
 	String image="images/"+pokename+".gif";
-	String username="tu";
-	String team= "tu sabes cual :v";
+	String username= (String) session.getAttribute("thename");
+	String team= (String) session.getAttribute("thehead");
 	%>
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<div id="header">
+				<div id="<%= team%>">
 
 					<!-- Inner -->
 						<div class="inner">
 							<header>
-								<h1><a href="index.html" id="logo">Catch!!</a></h1>
+								<h1><a href="index.html" id="logo"><%= username%></a></h1>
 							</header>
 						</div>
 
@@ -41,13 +41,6 @@
 								<li><a href="index.html">Home</a></li>
 								<li><a href="regist.html">Registrarse</a></li>
 								<li><a href="about.html">Sobre..</a></li>
-								<li>
-									<a href="#">Cuenta &hellip;</a>
-									<ul>
-							            <li>Usuario:<%= username%></li>
-										<li>Equipo:<%= team%></li>
-									</ul>
-								</li>
 							</ul>
 						</nav>
 

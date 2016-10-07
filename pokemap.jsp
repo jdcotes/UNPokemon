@@ -160,7 +160,8 @@
         latold = lat;
         lngold = lng;
       }
-
+      console.log(latold);
+      console.log(lngold);
       if (entro==0){
        
         var image = 'Marcadores/Pokemarker.png';
