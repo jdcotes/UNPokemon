@@ -11,7 +11,7 @@
             String team = request.getParameter( "team" );
             session.setAttribute( "theteam", team );
             int n =0;
-		  Class.forName("com.mysql.jdbc.Driver");
+		    Class.forName("com.mysql.jdbc.Driver");
             //Crear el objeto de conexion a la base de datos
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","1234");            //Crear objeto Statement para realizar queries a la base de datos
             Statement instruccion = conexion.createStatement();
@@ -43,7 +43,7 @@
                     "  INDEX `idpk_idx` (`IDpkcaught` ASC),\n" +
                     "  CONSTRAINT `"+constraintn+"`\n" +
                     "    FOREIGN KEY (`IDpkcaught`)\n" +
-                    "    REFERENCES `unpokemon`.`Pokedex` (`IDPokemon`)\n" +
+                    "    REFERENCES `unpokemon`.`pokedex` (`IDPokemon`)\n" +
                     "    ON DELETE NO ACTION\n" +
                     "    ON UPDATE NO ACTION)";
             PreparedStatement preparedStmt2 = conexion.prepareStatement(createjuga);
