@@ -18,8 +18,9 @@
 	<%
 	String username= (String) session.getAttribute("thename");
 	String team= (String) session.getAttribute("thehead");
-	String idplayer= (String) session.getAttribute("theidplayer");
-	String juga = "jugador"+idplayer;
+	//int idplayer= (int) session.getAttribute("theidplayer");
+	//String juga = "jugador"+idplayer;
+	int idplayer=0;
 	int pokeid=0;
 	String pokename="";
 	String poketype="";
@@ -64,7 +65,15 @@
     				Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","");
 
     				Statement instruccion = conexion.createStatement();		
-					ResultSet pokeinfo = instruccion.executeQuery("select j.Attack1, j.Attack2, j.level, p.Type, p.Pokemon from jugador2 as j , pokedex as p where p.IDPokemon=j.IDpkcaught " );
+    				ResultSet pokeplayer = instruccion.executeQuery("SELECT * FROM unpokemon.jugadores where Username='"+username+"'"  );
+
+			            while(pokeplayer.next()){
+			            idplayer=pokeplayer.getInt("IDPlayer");
+			            }
+			           String juga = "jugador"+idplayer;
+
+
+					ResultSet pokeinfo = instruccion.executeQuery("select j.Attack1, j.Attack2, j.level, p.Type, p.Pokemon from "+juga+" as j , pokedex as p where p.IDPokemon=j.IDpkcaught " );
 
 		            while(pokeinfo.next()){	
 		            //pokeid=pokeinfo.getInt("IDpkcaught");
