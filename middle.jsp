@@ -85,8 +85,6 @@
             session.setAttribute("theLevel",level);
             session.setAttribute("theLati",lati);
             session.setAttribute("theLongi",longi);
-            session.setAttribute("thehead",head);
-            session.setAttribute("theidplayer",idplayer);
 
             String redirectURL = "catch.jsp";
             response.sendRedirect(redirectURL);
