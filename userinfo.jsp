@@ -18,7 +18,7 @@
 	<%
 	String username= (String) session.getAttribute("thename");
 	String team= (String) session.getAttribute("thehead");
-	int idplayer= (int) session.getAttribute("theidplayer");
+	String idplayer= (String) session.getAttribute("theidplayer");
 	String juga = "jugador"+idplayer;
 	int pokeid=0;
 	String pokename="";
