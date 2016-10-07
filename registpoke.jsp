@@ -4,14 +4,14 @@
 <body>
 <%          
                         
-            
+            String username= (String) session.getAttribute("thename");
             String idpok= (String) session.getAttribute("idpoke");
             String level= (String) session.getAttribute("theLevel");
             String tipo= (String) session.getAttribute("Tipo");
             String name= (String) session.getAttribute("Pokename");
             String lati= (String) session.getAttribute("theLati");
             String longi= (String) session.getAttribute("theLongi");
-            int idplayer= (int) session.getAttribute("theidplayer");
+            int idplayer= 0;
             String[] a= new String[2];
             int i=0;
 
@@ -37,7 +37,13 @@
                }
             }
 
-            String juga="jugador"+idplayer;
+            ResultSet pokeplayer = instruccion.executeQuery("SELECT * FROM unpokemon.jugadores where Username='"+username+"'"  );
+
+                              while(pokeplayer.next()){
+                              idplayer=pokeplayer.getInt("IDPlayer");
+                              }
+                             String juga = "jugador"+idplayer;
+
 
             String pokecaught = "INSERT INTO unpokemon."+juga+" \n" +
                               "(`Caughts`,\n" +
