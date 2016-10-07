@@ -59,8 +59,8 @@
             preparedStmt2.execute();
 
 
-            //String redirectURL = "main.html";
-            //response.sendRedirect(redirectURL);
+            String redirectURL = "main.jps";
+            response.sendRedirect(redirectURL);
             
 
 
