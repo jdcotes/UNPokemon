@@ -61,9 +61,6 @@
 
 
             </script>
-            <form method=post action="index1.jsp">
-                <input type=submit value="Volver">
-            </form>
         </center>
     </body>
 </html>

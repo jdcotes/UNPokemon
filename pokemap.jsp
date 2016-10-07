@@ -24,6 +24,7 @@
     int minid = 1;
     int id = 3;
     int i = 0;
+    int level =0;
     int counter = 0;
     int counter2 = 0;
     String prueba = "";
@@ -41,7 +42,7 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
   <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsFelqvBHeiBZ9KEmCJ31cVXQjdo0aASk"  async defer></script>-->
  <% 
-      try {
+    try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","1234");
         Statement instruccion = conexion.createStatement();
@@ -74,10 +75,13 @@
           Statement instruccion = conexion.createStatement();
                      
           Random r = new Random();  
+          Random s = new Random();
+
           id = r.nextInt(maxid-minid)+minid;
+          level = s.nextInt(101-5)+5;
           resultlng = Math.random()*(highlng-lowlng) + lowlng;
           resultlat = Math.random()*(highlat-lowlat) + lowlat;
-          int val = instruccion.executeUpdate("INSERT INTO `unpokemon`.`pokemap`(`IDPok`,`Latitud`,`Longitud`,`Flag`)VALUES('"+id+"','"+resultlat+"','"+resultlng+"','0');");
+          int val = instruccion.executeUpdate("INSERT INTO `unpokemon`.`pokemap`(`IDPok`,`Level`,`Attack1`,`Attack2`,`Latitud`,`Longitud`,`Flag`)VALUES('"+id+"','"+level+"','0','0','"+resultlat+"','"+resultlng+"','0');");
           
           ResultSet tabla = instruccion.executeQuery("SELECT Image FROM pokedex WHERE IDPokemon = "+id+"");
           while(tabla.next())
@@ -121,80 +125,143 @@
     var lng4;
     var lat5;
     var lng5;
-    var markers=[];
+    var markers = [];
+    var auto_refresh1;
+    var lat;
+    var lng;
+    var latold = 0;
+    var lngold = 0;
+    var marker = [];
+    var entro = 0;
+    var myLatLng;
+    var intervalo1;
+    var distance = [];
 
-    drawpokemonmarker();
+    CurrentPosition();
+ 
+    intevalo1 = setInterval('CurrentPosition()',5000);
+
+    var auto_refresh1 = setInterval(function (){$('#map').load('erasemap.jsp').fadeIn("slow");}, 240000);
+    var intervalo3 = setInterval('undrawpokemonmarker()',240000);
+    //var auto_refresh1 = setInterval(function (){$('#map1').load('index.jsp').fadeIn("slow");}, 30000);
 
     console.log(marker);
+    function CurrentPosition(){
+        navigator.geolocation.getCurrentPosition(onSuccessGeolocating, onErrorGeolocating,{enableHighAccuracy: true,maximumAge:5000,timeout:10000});
+    }
+
+    function onSuccessGeolocating(position){
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      
+      if ((Math.abs(lat-latold)>0.0001) || (Math.abs(lng-lngold)>0.0001)){
+        myLatLng = new google.maps.LatLng(lat,lng);
+        latold = lat;
+        lngold = lng;
+      }
+
+      if (entro==0){
+       
+        var image = 'Marcadores/Pokemarker.png';
+       marker = new google.maps.Marker({
+       position: {lat: 11.019195, lng: -74.850409},
+       map: map2,   
+       icon: image          
+       });
+       entro=1;
+      }
+     
+     drawmarkertrainer();
+     detectdistance();
+    }
+      
+    drawpokemonmarker();
+
+    function onErrorGeolocating(position){
+      alert("No se adquirieron datos");
+    }
+      
+    function drawmarkertrainer(){
+      console.log("Estoy funcionando");
+      marker.setMap(null);
+      var image = 'Marcadores/Pokemarker.png';
+      marker = new google.maps.Marker({
+       position: myLatLng,
+       map: map2,
+       icon: image  
+      });
+
+    }
+
     function drawpokemonmarker(){
 
-        lat1 = <%= arraylat[0]%>;
-        lng1 = <%= arraylng[0]%>;
-        lat2 = <%= arraylat[1]%>;
-        lng2 = <%= arraylng[1]%>;
-        lat3 = <%= arraylat[2]%>;
-        lng3 = <%= arraylng[2]%>;
-        lat4 = <%= arraylat[3]%>;
-        lng4 = <%= arraylng[3]%>;
-        lat5 = <%= arraylat[4]%>;
-        lng5 = <%= arraylng[4]%>;
+      lat1 = <%= arraylat[0]%>;
+      lng1 = <%= arraylng[0]%>;
+      lat2 = <%= arraylat[1]%>;
+      lng2 = <%= arraylng[1]%>;
+      lat3 = <%= arraylat[2]%>;
+      lng3 = <%= arraylng[2]%>;
+      lat4 = <%= arraylat[3]%>;
+      lng4 = <%= arraylng[3]%>;
+      lat5 = <%= arraylat[4]%>;
+      lng5 = <%= arraylng[4]%>;
 
-        if (<%= counter%>==1){
-          var image = "Marcadores/".concat("<%= pokeicon[0]%>");
-          myLatLng1 = new google.maps.LatLng(lat1,lng1);
-          marker1 = new google.maps.Marker({
-            position: myLatLng1,
-            map: map2,
-            icon: image   
-          });
-          markers.push(marker1);
-        }
+      if (<%= counter%>==1){
+        var image = "Marcadores/".concat("<%= pokeicon[0]%>");
+        myLatLng1 = new google.maps.LatLng(lat1,lng1);
+        marker1 = new google.maps.Marker({
+          position: myLatLng1,
+          map: map2,
+          icon: image   
+        });
+        markers.push(marker1);
+      }
 
-        if (<%= counter%>==2){
-          var image = "Marcadores/".concat("<%= pokeicon[0]%>");
-          myLatLng1 = new google.maps.LatLng(lat1,lng1);
-          marker1 = new google.maps.Marker({
-            position: myLatLng1,
-            map: map2,
-            icon: image   
-          });
-          markers.push(marker1);
-          var image = "Marcadores/".concat("<%= pokeicon[1]%>");
-          myLatLng1 = new google.maps.LatLng(lat2,lng2);
-          marker2 = new google.maps.Marker({
-            position: myLatLng1,
-            map: map2,
-            icon: image   
-          });
-          markers.push(marker2);
-        }
+      if (<%= counter%>==2){
+        var image = "Marcadores/".concat("<%= pokeicon[0]%>");
+        myLatLng1 = new google.maps.LatLng(lat1,lng1);
+        marker1 = new google.maps.Marker({
+          position: myLatLng1,
+          map: map2,
+          icon: image   
+        });
+        markers.push(marker1);
+        var image = "Marcadores/".concat("<%= pokeicon[1]%>");
+        myLatLng1 = new google.maps.LatLng(lat2,lng2);
+        marker2 = new google.maps.Marker({
+          position: myLatLng1,
+          map: map2,
+          icon: image   
+        });
+        markers.push(marker2);
+      }
 
-        if (<%= counter%>==3){
-          var image = "Marcadores/".concat("<%= pokeicon[0]%>");
-          myLatLng1 = new google.maps.LatLng(lat1,lng1);
-          marker1 = new google.maps.Marker({
-            position: myLatLng1,
-            map: map2,
-            icon: image   
-          });
-          markers.push(marker1);
-          var image = "Marcadores/".concat("<%= pokeicon[1]%>");
-          myLatLng1 = new google.maps.LatLng(lat2,lng2);
-          marker2 = new google.maps.Marker({
-            position: myLatLng1,
-            map: map2,
-            icon: image   
-          });
-          markers.push(marker2);
-          var image = "Marcadores/".concat("<%= pokeicon[2]%>");
-          myLatLng1 = new google.maps.LatLng(lat3,lng3);
-          marker3 = new google.maps.Marker({
-            position: myLatLng1,
-            map: map2,
-            icon: image   
-          });
-          markers.push(marker3);
-        }
+      if (<%= counter%>==3){
+        var image = "Marcadores/".concat("<%= pokeicon[0]%>");
+        myLatLng1 = new google.maps.LatLng(lat1,lng1);
+        marker1 = new google.maps.Marker({
+          position: myLatLng1,
+          map: map2,
+          icon: image   
+        });
+        markers.push(marker1);
+        var image = "Marcadores/".concat("<%= pokeicon[1]%>");
+        myLatLng1 = new google.maps.LatLng(lat2,lng2);
+        marker2 = new google.maps.Marker({
+          position: myLatLng1,
+          map: map2,
+          icon: image   
+        });
+        markers.push(marker2);
+        var image = "Marcadores/".concat("<%= pokeicon[2]%>");
+        myLatLng1 = new google.maps.LatLng(lat3,lng3);
+        marker3 = new google.maps.Marker({
+          position: myLatLng1,
+          map: map2,
+          icon: image   
+        });
+        markers.push(marker3);
+      }
 
         if (<%= counter%>==4){
           var image = "Marcadores/".concat("<%= pokeicon[0]%>");
@@ -272,13 +339,44 @@
             icon: image   
           });
           markers.push(marker5);
+          
         }
+
+
 
         var markersold=markers;
         console.log(markers);
+  }
+
+    function detectdistance(){
+      distance[0]= Math.sqrt(Math.pow(lat1-latold,2)+Math.pow(lng1-lngold,2));
+      distance[1]= Math.sqrt(Math.pow(lat2-latold,2)+Math.pow(lng2-lngold,2));
+      distance[2]= Math.sqrt(Math.pow(lat3-latold,2)+Math.pow(lng3-lngold,2));
+      distance[3]= Math.sqrt(Math.pow(lat4-latold,2)+Math.pow(lng4-lngold,2));
+      distance[4]= Math.sqrt(Math.pow(lat5-latold,2)+Math.pow(lng5-lngold,2));
+      console.log(distance); 
+      var min = Math.min(distance[0],distance[1],distance[2],distance[3],distance[4]);
+      console.log(min);
+      if (min<=0.0002){
+        console.log("Atrapame");
+        if (distance[0]=min){
+        
+        }
+        if (distance[1]=min){
+
+        }
+        if (distance[2]=min){
+
+        }
+        if (distance[3]=min){
+
+        }
+        if (distance[4]=min){
+
+        }
+      }
     }
-    intervalo3 = setInterval('undrawpokemonmarker()',240000);
-    var auto_refresh1 = setInterval(function (){$('#map').load('erasemap.jsp').fadeIn("slow");}, 240000);
+
     function undrawpokemonmarker()
     {
       for (var i = 0; i < markers.length; i++) {
