@@ -13,14 +13,20 @@
 		<link rel="stylesheet" href="assets/css/mainn.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
+	<%@ page import="java.sql.*" %>
 	<body class="no-sidebar">
 	<%
-	String pokename= (String) session.getAttribute("Pokename");
-	String poketype= (String) session.getAttribute("Tipo");
-	String pokelevel= (String) session.getAttribute("theLevel");
-	String image="images/"+pokename+".gif";
 	String username= (String) session.getAttribute("thename");
 	String team= (String) session.getAttribute("thehead");
+	int idplayer= (int) session.getAttribute("theidplayer");
+	String juga = "jugador"+idplayer;
+	int pokeid=0;
+	String pokename="";
+	String poketype="";
+	String pokelevel="";
+	String pokeatt1="";
+	String pokeatt2="";
+	
 	%>
 		<div id="page-wrapper">
 
@@ -41,33 +47,51 @@
 								<li><a href="index.html">Home</a></li>
 								<li><a href="regist.html">Registrarse</a></li>
 								<li><a href="about.html">Sobre..</a></li>
-								<li><a href="userinfo.jsp">Pokemons</a></li>
+								<li><a href="userinfo.html">Pokemons</a></li>
 							</ul>
 						</nav>
 
 				</div>
 
-			<!-- Main -->
-				<div class="wrapper style1">
+<!-- Carousel -->
+				<section class="carousel">
+					<div class="reel">
 
-					<div class="container">
-						<article id="main" class="special">
+					<%
+					    Class.forName("com.mysql.jdbc.Driver");
+
+    				Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","");
+
+    				Statement instruccion = conexion.createStatement();		
+					ResultSet pokeinfo = instruccion.executeQuery("select j.Attack1, j.Attack2, j.level, p.Type, p.Pokemon from jugador2 as j , pokedex as p where p.IDPokemon=j.IDpkcaught " );
+
+		            while(pokeinfo.next()){	
+		            //pokeid=pokeinfo.getInt("IDpkcaught");
+					pokeatt1=pokeinfo.getString("Attack1");
+		            pokeatt2=pokeinfo.getString("Attack2");
+		            pokelevel=pokeinfo.getString("level");
+		            pokename=pokeinfo.getString("Pokemon");
+		            poketype=pokeinfo.getString("Type");
+		            //ResultSet poked = instruccion.executeQuery("SELECT * FROM unpokemon.pokedex where IDPokemon='"+pokeid+"'"  );
+		            //while(poked.next()){pokename=poked.getString("Pokemon");poketype=poked.getString("Type");}
+
+		            String image="images/"+pokename+".gif";
+
+					%>
+						<article>
+							<img src="<%= image%>" style="width:15% height:10%">
 							<header>
-								<h2><a href="#"><%= pokename%></a></h2>
-								<p>
-									lvl: <%= pokelevel%> tipo: <%= poketype%> 
-								</p>
+								<h3>Nombre: <%= pokename%> <br> Lv: <%= pokelevel%> Tipo: <%= poketype%></h3>
 							</header>
-							<center>
-							<img src="<%= image%>" style="width:30%;height:30%">
-							</center>
+							<p>Ataques: <br> <%= pokeatt1%> <br> <%= pokeatt2%></p>
 						</article>
-						<hr />
+					<%
+					}
+
+					%>
+
 					</div>
-					<center>
-					<a href="registpoke.jsp" class="button">Atrapar</a>
-					</center>
-				</div>
+				</section>
 
 			<!-- Footer -->
 				<div id="footer">
