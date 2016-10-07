@@ -65,7 +65,7 @@
             preparedStmt2.execute();
 
 
-            String redirectURL = "main.jps";
+            String redirectURL = "main.jsp";
             response.sendRedirect(redirectURL);
             
 
