@@ -19,7 +19,28 @@
 
             ResultSet tabla = instruccion.executeQuery("SELECT * FROM unpokemon.jugadores where Username='"+name+"'" );
 
+            ResultSet pokeplayer = instruccion.executeQuery("SELECT * FROM unpokemon.jugadores where Username='"+playername+"'"  );
 
+            while(pokeplayer.next()){
+            team=pokeplayer.getString("Team");
+            idplayer=pokeplayer.getInt("IDPlayer");
+            }
+
+            if(team.equals("Rojo"))
+            {
+               head="headerr";
+            }else{
+               if(team.equals("Azul"))
+               {
+                  head="headera";
+               }else{
+                  head="headerm";
+               }
+            }
+
+            session.setAttribute("thehead",head);
+            session.setAttribute("theidplayer",idplayer);
+            
             while(tabla.next()){
             user=tabla.getString("Username");
             pass=tabla.getString("Password");}
