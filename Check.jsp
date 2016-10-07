@@ -12,6 +12,7 @@
             String pass="";
             String head="";
             String team="";
+            String idplayer="";
 		Class.forName("com.mysql.jdbc.Driver");
             //Crear el objeto de conexion a la base de datos
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/unpokemon","root","1234");
