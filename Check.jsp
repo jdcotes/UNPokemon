@@ -25,7 +25,7 @@
             pass=tabla.getString("Password");}
             
             if(pass.equals(passw)){
-            String redirectURL = "db.jsp";
+            String redirectURL = "main.html";
             response.sendRedirect(redirectURL);
             }
             else{
